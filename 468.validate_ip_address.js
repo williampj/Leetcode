@@ -94,9 +94,7 @@ var validIPAddress = function(queryIP) {
 
     if (dotFound) {
         return chunkCounter === 4 ? 'IPv4' : 'Neither';
-    } else if (colonFound) {
-        return chunkCounter === 8 ? 'IPv6' : 'Neither';
     } else {
-        return 'Neither'
+        return chunkCounter === 8 ? 'IPv6' : 'Neither';
     }
 };
