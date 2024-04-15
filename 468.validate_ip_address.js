@@ -98,3 +98,6 @@ var validIPAddress = function(queryIP) {
         return chunkCounter === 8 ? 'IPv6' : 'Neither';
     }
 };
+
+Time Complexity: O(N)
+Memory Complexity: O(1)

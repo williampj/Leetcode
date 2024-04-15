@@ -44,14 +44,16 @@ s contains only the characters ('I', 'V', 'X', 'L', 'C', 'D', 'M').
 It is guaranteed that s is a valid roman numeral in the range [1, 3999].
 
 
-Data Structures:
+======= Data Structures: =======
+
 input string 
 pointer int 
 converter hash map 
 output int 
 
 
-Algorithm:
+======= Algorithm: =======
+
 - build converter 
 - iterate string  
 - if two letter edge case
@@ -95,3 +97,6 @@ var romanToInt = function(s) {
 
   return output 
 };
+
+Time Complexity: O(N)
+Memory Complexity: O(1)
