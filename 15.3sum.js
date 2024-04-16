@@ -166,7 +166,7 @@ var threeSum = function(nums) {
             }
         }
     }
-    
+
     return output;
 }
 
@@ -177,13 +177,3 @@ Memory Complexity: O(1)
 
 
 
-
-========== Data Structures ==========
-
-========== Algorithm ==========
-
-========== Solution ==========
-
-
-Time Complexity: O()
-Memory Complexity: O()
