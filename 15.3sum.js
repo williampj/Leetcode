@@ -1,4 +1,4 @@
-15. 3Sum 
+c15. 3Sum 
 
 Given an integer array nums, return all the triplets [nums[i], nums[j], nums[k]] 
 such that i != j, i != k, and j != k, and nums[i] + nums[j] + nums[k] == 0.
@@ -109,7 +109,7 @@ Memory Complexity: O(N) - O(3N) for two hashes and output array => O(N)
 APPROACH 2: 3 POINTERS 
 
 ========== Data Structures ==========
-[nums - nested array 
+nums - nested array 
 
 sortedNums - sorted nums 
 outer loop pointer - int 
@@ -140,13 +140,13 @@ return output ]
  * @return {number[][]}
  */
 var threeSum = function(nums) {
-    const sortedNums = nums.sort(); 
+    const sortedNums = nums.sort((a,b) => a < b ? -1 : 1); 
     let left;
     let right; 
     const output = [];
 
-    for (let i = 0; i < nums.length; i += 1) {
-        while (i !== 0 && sortedNums[i] === sortedNums[i - 1]) {
+    for (let i = 0; i < nums.length - 2; i += 1) {
+        while (sortedNums[i] === sortedNums[i - 1]) {
             i += 1; 
         }
         left = i + 1;
