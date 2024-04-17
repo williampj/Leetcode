@@ -88,3 +88,29 @@ var findMin = function(nums) {
   }
 };
 
+
+====== Most performant solution ==========
+
+var findMin = function(nums) {
+  let left = 0;
+  let right = nums.length - 1;
+  let middle;
+
+  while (left <= right) {
+    middle = left + Math.floor((right - left) / 2);
+    
+    if (middle === 0) {
+      if (right === 0) return nums[middle];
+      if (right === 1) return nums[middle] < nums[right] ? nums[middle] : nums[right]
+    }
+
+    if (nums[middle] < nums[middle-1]) return nums[middle];
+    
+    if (nums[middle] < nums[right]) {
+        right = middle - 1;
+    } else {
+      left = middle + 1;
+    }
+  }
+};
+
