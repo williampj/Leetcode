@@ -74,13 +74,12 @@ var mergeTwoLists = function(list1, list2) {
   while (list1 && list2) {
       if (list1.val <= list2.val) {
           curr.next = list1;
-          curr = curr.next;
           list1 = list1.next
       } else {
           curr.next = list2;
-          curr = curr.next;
           list2 = list2.next
       }
+      curr = curr.next;
   }
 
   if (list1) {
@@ -92,5 +91,5 @@ var mergeTwoLists = function(list1, list2) {
   return head
 };
 
-Time Complexity: O()
-Memory Complexity: O()
+Time Complexity: O(N)
+Memory Complexity: O(1)
