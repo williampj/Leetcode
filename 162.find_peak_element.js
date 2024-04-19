@@ -82,3 +82,40 @@ var findPeakElement = function(nums) {
   }
 };
 
+// APPROACH 2: Divide and Conquer 
+
+
+========== Data Structures ==========
+nums - array of ints 
+
+peak int 
+left int 
+right int 
+mid int 
+
+output - int (index of peak)
+
+========== Algorithm ==========
+main function 
+  return call helper function with pointers 
+
+helper function 
+  edge cases: 
+    if left passed right 
+      return false 
+    if left is equal to right 
+      return left if peak, otherwise false 
+  
+  inspect mid => return mid if it's a peak 
+  
+  leftResult = call left side 
+  rightResult = call right side 
+
+  return leftResult OR rightResult
+
+
+========== Solution ==========
+
+
+Time Complexity: O()
+Memory Complexity: O()
