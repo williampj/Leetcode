@@ -121,3 +121,75 @@ var searchRange = function(nums, target) {
 
    return [leftMost, rightMost];
 };
+
+
+======== Approach 2: Divide-and-Conquer =============
+
+========== Data Structures ==========
+nums - array of ints
+target - int 
+
+left pointer - int 
+right pointer - int 
+edges - array of 2 ints (leftMost & rightMost matches)
+
+========== Algorithm =========
+main function 
+  edge case: return NOT_FOUND if empty array 
+  create edges array with two undefined vals
+  call helper function, pass in pointers and edges array 
+  inspect edges
+    return NOT_FOUND if edges elements are still undefined
+    else return edges 
+
+Helper function 
+  Edge cases 
+  - if left pointer passes right pointer 
+      return 
+  - if left pointer val and right pointer val are both greater or both smaller than target 
+      return 
+  Get midpoint 
+  - if mid val is equal to target 
+      if smaller than leftMost edge, reassign left 
+      if greater than rightMost edge, reassign right 
+  - call leftSide, pass array 
+  - call rightSide, pass array 
+
+
+========== Solution ==========
+
+var searchRange = function(nums, target) {
+  const NOT_FOUND = [-1, -1];
+  
+  if (nums.length === 0) return NOT_FOUND;
+  
+  const edges = [undefined, undefined]
+  searchRangeHelper(nums, target, 0, nums.length - 1, edges);
+  
+  if (edges[0] === undefined) {
+      return NOT_FOUND;
+  }
+
+  return edges;
+}
+
+const searchRangeHelper = function(nums, target, left, right, edges) {
+  if (left > right) return;
+  if (nums[left] < target && nums[right] < target) return;
+  if (nums[left] > target && nums[right] > target) return; 
+
+  const mid = Math.floor(left + (right - left) / 2);
+  if (nums[mid] === target) {
+      if (!(edges[0] < mid)) {
+          edges[0] = mid; 
+      }
+      if (!(edges[1] > mid)) {
+          edges[1] = mid; 
+      }
+  }
+  searchRangeHelper(nums, target, left, mid - 1, edges);
+  searchRangeHelper(nums, target, mid + 1, right, edges);
+}
+
+Time Complexity: O()
+Memory Complexity: O()

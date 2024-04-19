@@ -46,7 +46,7 @@ Helper:
     return largest of leftSum, rightSum and crossingMiddle max 
 
 ========== Solution ==========
-SOLUTION 1: Linear iteration 
+SOLUTION 1: T O(N), S O(1)
 
 var maxSubArray = function(nums) {
   let maxSoFar = -Infinity;
