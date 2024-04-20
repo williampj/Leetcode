@@ -27,6 +27,9 @@ Constraints:
 
 1 <= n <= 45
 
+==============================================================
+========= Approach one: Top-down Dynamic Programming =========
+==============================================================
 
 ========== Data Structures ==========
 input int 
@@ -69,4 +72,45 @@ const climbStairsHelper = function(n, memo) {
 
   return memo[n];
 }
+
+==============================================================
+========= Approach two: Bottom-up Dynamic Programming ========
+==============================================================
+
+========== Data Structures ==========
+n - int (num stairs)
+
+twoPrev int 
+prev int 
+curr int 
+
+========== Algorithm ==========
+
+Base case: 
+  if n <= 3 
+    return n 
+Create memo array with first four elements: 0 - 3
+loop i from 4 to n 
+  set memo of i to sum of previous two steps
+return memo of n 
+
+  
+========== Solution ==========
+
+Time Complexity: O(N)
+Memory Complexity: O(N)
+
+
+const climbStairs = function(n) {
+  if (n <= 3) return n;
+
+  const memo = [0, 1, 2, 3];
+  for (let i = 4; i <= n; i += 1) {
+      memo[i] = memo[i - 2] + memo[i - 1];
+  }
+  
+  return memo[n];
+}
+
+
 

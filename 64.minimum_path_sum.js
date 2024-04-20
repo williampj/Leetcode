@@ -25,6 +25,11 @@ n == grid[i].length
 0 <= grid[i][j] <= 200
 
 
+==============================================================
+========= Approach one: Top-down Dynamic Programming =========
+==============================================================
+
+
 ========== Data Structures ==========
 grid - nested array 
 
@@ -43,10 +48,9 @@ Main function
 Helper function
   Edge cases 
     inspect memo => return if visited 
-    // out of bounds 
   
-  recurse right unless out of bounds (set to positiveInfinity) 
-  recurse down unless out of bounds (set to positiveInfinity)
+  recurse right unless out of bounds 
+  recurse down unless out of bounds 
 
   Set current memo spot to current value + smallest of right or down result 
   
@@ -55,8 +59,8 @@ Helper function
 
 ========== Solution ==========
 
-Time Complexity: O()
-Memory Complexity: O()
+Time Complexity: O(N^2)
+Memory Complexity: O(N)
 
 /**
  * @param {number[][]} grid
@@ -91,4 +95,80 @@ const minPathSumHelper = function(grid, row, column, endRow, endColumn, memo) {
   }
 
   return memo[row][column];
+}
+
+==============================================================
+========= Approach two: Bottom-up Dynamic Programming ========
+==============================================================
+// Slightly slower than top-down DP, same memory usage
+
+========== Data Structures ==========
+grid - matrix
+
+memo - matrix (grid min paths at each square)
+row - int 
+column - int 
+lastRow - int 
+lastColumn - int 
+currentSquareVal - int (value in grid)
+
+========== Algorithm ==========
+Base case: 
+  if one row => reduce the column to its sum and return 
+  if one column => reduce the one-element rows to their sum and return 
+
+create memo, assigning goal value 
+iterate downwards 
+  for each row 
+    for each column 
+      if on last row & last column => skip 
+      if on last row => sum of own value + higher column 
+      if on law column => sum of own value + higher row 
+      else => sum of own value and lowest of higher row or higher column 
+return memo[0,0]
+
+========== Solution ==========
+
+Time Complexity: O(N^2)
+Memory Complexity: O(N)
+
+/**
+ * @param {number[][]} grid
+ * @return {number}
+ */
+
+// BOTTOM-UP DP
+const minPathSum = function(grid) {
+  const lastRow = grid.length - 1;
+  const lastColumn = grid[0].length - 1;
+  
+  if (grid.length === 1) {
+      return grid[0].reduce((acc, cv) => acc + cv);
+  }
+  if (grid[0].length === 1) {
+      return grid.reduce((acc, cv) => acc + cv[0], 0);
+  }
+
+  const memo = new Array(grid.length).fill([]);
+  memo[lastRow][lastColumn] = grid[lastRow][lastColumn]
+
+  for (let row = lastRow; row >= 0; row -= 1) {
+      for (let column = lastColumn; column >= 0; column -= 1) {
+          if (row === lastRow && column === lastColumn) continue;
+          
+          const currentSquare = grid[row][column];
+
+          if (row === lastRow) {
+              memo[row][column] = currentSquare + memo[row][column+1]
+          }
+          else if (column === lastColumn) {
+              memo[row][column] = currentSquare + memo[row+1][column]
+          }
+          else {
+              memo[row][column] = currentSquare + Math.min(memo[row+1][column], memo[row][column+1])
+          }
+      }
+  }
+  
+  return memo[0][0];
 }

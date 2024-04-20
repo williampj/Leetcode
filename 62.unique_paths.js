@@ -29,6 +29,10 @@ Constraints:
 
 1 <= m, n <= 100
 
+==============================================================
+========= Approach one: Top-down Dynamic Programming =========
+==============================================================
+
 
 ========== Data Structures ==========
 memo = nested array of same size as input 
@@ -84,3 +88,67 @@ const uniquePathsHelper = function(row, column, m, n, memo) {
 
   return memo[row][column];
 }
+
+==============================================================
+========= Approach two: Bottom-up Dynamic Programming ========
+==============================================================
+// similar runtime and memory usage to top-down approach
+
+========== Data Structures ==========
+m - int (rows)
+n - int (columns)
+
+row - int 
+column - int 
+memo - matrix (m x n);
+
+========== Algorithm ==========
+create memo 
+assign val 1 to goal 
+
+nested looping downwards from the goal 
+  for each row 
+    for each column 
+      if in goal => continue 
+      if on last row => set to higher column 
+      if on last column => set to higher row 
+      else set memo val equal to sum of higher row and higher column 
+return memo[1,1]
+
+
+========== Solution ==========
+
+/**
+ * @param {number} m
+ * @param {number} n
+ * @return {number}
+ */
+// BOTTOM-UP DP 
+const uniquePaths = function(m,n) {
+  if ([m,n].includes(1)) return 1; 
+  
+  const memo = new Array(m).fill([])//.map(ary => new Array(n));
+  memo[m-1][n-1] = 1;
+
+  for (let row = m-1; row >= 0; row -= 1) {
+      for (let column = n-1; column >= 0; column -= 1) {
+          if (row === m-1 && column === n-1) {
+              continue;
+          }
+          else if (row === m-1) {
+              memo[row][column] = memo[row][column+1]
+          }
+          else if (column === n-1) {
+              memo[row][column] = memo[row+1][column]
+          } 
+          else {
+              memo[row][column] = memo[row+1][column] + memo[row][column+1];
+          }
+      }
+  }
+
+  return memo[0][0]
+}
+
+Time Complexity: O()
+Memory Complexity: O()
