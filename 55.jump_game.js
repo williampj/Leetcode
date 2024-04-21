@@ -25,6 +25,9 @@ Constraints:
 1 <= nums.length <= 104
 0 <= nums[i] <= 105
 
+==============================================================
+========= Approach one: Top-down Dynamic Programming =========
+==============================================================
 
 ========== Data Structures ==========
 
@@ -95,8 +98,11 @@ const canJumpHelper = function(nums, indx, memo) {
   return memo[indx];
 }
 
+==============================================================
+========= Approach two: Bottom-up Dynamic Programming ========
+==============================================================
 
-// FASTER, ITERATIVE APPROACH 
+// FASTER
 
 var canJump = function(nums) {
   const tabs = new Array(nums.length);
