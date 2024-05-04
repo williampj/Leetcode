@@ -109,20 +109,6 @@ Memory Complexity: O(N) - output string grows as input number gets larger
  * @param {number} num
  * @return {string}
  */
-// converter[digit][position]:
-//   1-9 all are keys, with hash as value 
-//     1-4 are keys, with roman string as values 
-
-// set position to 1 
-// create digit
-// set output to empty string 
-
-// while number is not zero 
-//   take digit as number modulo 10 
-//   concat output with return of digit and position in converter 
-//   set number to number minus digit divided by ten
-
-// return output 
 
 var intToRoman = function(num) {
   const CONVERTER = [
